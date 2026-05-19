@@ -62,7 +62,7 @@ body {
     color: var(--text-color) !important;
 }
 [data-theme="dark"] .navbar-toggler {
-    filter: invert(1); /* Memastikan tombol menu mobile terlihat saat dark mode */
+    filter: invert(1);
 }
 
 .si-ungu, .si-ungu1 {
@@ -91,8 +91,50 @@ body {
     width: 250px; 
     border-radius: 10px;
 }
-
-
+.modal {
+    display: none; 
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 16px;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    transform: scale(0.8);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.modal.show {
+    display: flex;
+}
+.modal.show .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #666;
+}
 .skill-section-final {
     max-width: 100%;                  
     margin: 0 auto;
@@ -152,7 +194,7 @@ body {
 }
 .bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #7759d8, #c672e2); /* Gradient diselaraskan dengan estetika button */
+    background: linear-gradient(90deg, #7759d8, #c672e2);
     border-radius: 10px;
 }
 .skill-quote {
@@ -171,8 +213,6 @@ body {
     .skill-grid-final { flex-direction: column; gap: 20px; }
     .skill-section-final { padding: 60px 20px; }
 }
-
-/* Project Section */
 .project-section { 
     text-align: center; 
     padding: 50px 0; 
@@ -221,8 +261,6 @@ body {
     z-index: 20; 
     font-size: 18px;
 }
-
-/* Contact Section */
 .contact-section { 
     padding-top: 50px;
     display: flex;
@@ -318,3 +356,78 @@ body {
 }
 input:checked + .slider { background-color: #6a6aff; }
 input:checked + .slider:before { transform: translateX(20px); }
+.hero-section p, 
+.hero-section h1, 
+.hero-section .text-muted, 
+.hero-section .btn-cv {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: premiumEntrance 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+.hero-section p:nth-child(1) { animation-delay: 0.1s; }
+.hero-section h1:nth-child(2) { animation-delay: 0.2s; }
+.hero-section h1:nth-child(3) { animation-delay: 0.3s; }
+.hero-section p:nth-child(4) { animation-delay: 0.4s; }
+.hero-section .text-muted     { animation-delay: 0.5s; }
+.hero-section .btn-cv         { animation-delay: 0.8s; }
+
+.social-media-container {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+.social-media-container .btn {
+    opacity: 0;
+    transform: translateY(20px);
+    color: var(--text-color) !important;
+    font-size: 24px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s !important;
+    animation: premiumEntrance 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: calc(var(--i) * 0.15s + 0.6s);
+}
+.social-media-container .btn:hover {
+    transform: translateY(-5px) scale(1.2);
+    color: #c672e2 !important;
+}
+@keyframes premiumEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.skill-box {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.skill-box:hover {
+    transform: translateX(10px);
+}
+.skill-box:hover .bar-fill {
+    filter: brightness(1.2);
+    box-shadow: 0 0 10px rgba(198, 114, 226, 0.5);
+}
+.project-card {
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease !important;
+}
+.project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+}
+.project-card .card-img img {
+    transition: transform 0.5s ease;
+}
+.project-card:hover .card-img img {
+    transform: scale(1.08); 
+}
+.contact-badge {
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+    cursor: pointer;
+}
+.contact-badge:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
